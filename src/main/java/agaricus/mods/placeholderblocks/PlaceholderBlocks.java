@@ -12,8 +12,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.MinecraftForge;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
 @Mod(modid = "PlaceholderBlocks", name = "PlaceholderBlocks", version = "1.0-SNAPSHOT") // TODO: version from resource
@@ -21,7 +22,9 @@ import java.util.logging.Level;
 public class PlaceholderBlocks {
 
     private boolean verbose = true;
-    private int blockId;
+
+    private String blockNames[] = { "Limestone", "Granite" };
+    private Map<String, Integer> blockIDs = new HashMap<String, Integer>();
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
@@ -29,10 +32,13 @@ public class PlaceholderBlocks {
 
         FMLLog.log(Level.FINE, "PlaceholderBlocks loading config");
 
+        int startID = 3000;
         try {
             cfg.load();
 
-            blockId = cfg.getBlock("limestone", 3000).getInt(300);
+            for (int i = 0; i < blockNames.length; ++i) {
+                blockIDs.put(blockNames[i], cfg.getBlock(blockNames[i].toLowerCase(), startID + i).getInt(startID + i));
+            }
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "PlaceholderBlocks had a problem loading it's configuration");
         } finally {
@@ -42,11 +48,17 @@ public class PlaceholderBlocks {
 
     @Mod.Init
     public void init(FMLInitializationEvent event) {
-        final BlockLimestone block = new BlockLimestone(blockId,  Material.rock);
-        block.setUnlocalizedName("limestone").setHardness(1.5F).setResistance(2.0F);
-        GameRegistry.registerBlock(block, "limestone");
-        LanguageRegistry.instance().addStringLocalization("tile.limestone.name", "en_US", "Limestone");
-        LanguageRegistry.instance().addStringLocalization("item.limestone.name", "en_US", "Limestone");
+        for (int i = 0; i < blockNames.length; ++i) {
+            String localizedName = blockNames[i];
+            int id = blockIDs.get(localizedName);
+            String unlocalizedName = localizedName.toLowerCase();
+
+            final BlockPlaceholder block = new BlockPlaceholder(id,  Material.rock);
+            block.setUnlocalizedName(unlocalizedName).setHardness(1.5F).setResistance(2.0F);
+            GameRegistry.registerBlock(block, unlocalizedName);
+            LanguageRegistry.instance().addStringLocalization("tile."+unlocalizedName+".name", "en_US", localizedName);
+            LanguageRegistry.instance().addStringLocalization("item."+unlocalizedName+".name", "en_US", localizedName);
+        }
     }
 
     @PostInit
