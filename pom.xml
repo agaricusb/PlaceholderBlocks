@@ -29,7 +29,17 @@
    <resources>
     <resource>
      <directory>src/main/resources</directory>
+     <filtering>false</filtering>
+     <includes>
+      <include>**/*.png</include>
+     </includes>
+    </resource>
+    <resource>
+     <directory>src/main/resources</directory>
      <filtering>true</filtering>
+     <excludes>
+      <exclude>**/*.png</exclude>
+     </excludes>
     </resource>
    </resources>
   </build>
