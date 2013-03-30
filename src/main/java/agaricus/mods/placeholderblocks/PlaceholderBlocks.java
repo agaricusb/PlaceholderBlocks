@@ -42,11 +42,11 @@ public class PlaceholderBlocks {
 
     @Mod.Init
     public void init(FMLInitializationEvent event) {
-        final BlockLimestone block = new BlockLimestone(blockId, 2, Material.rock);
-        block.setUnlocalizedName("placeholderblocks.limestone").setHardness(1.5F).setResistance(2.0F);
+        final BlockLimestone block = new BlockLimestone(blockId,  Material.rock);
+        block.setUnlocalizedName("limestone").setHardness(1.5F).setResistance(2.0F);
         GameRegistry.registerBlock(block, "limestone");
-        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.limestone.name", "en_US", "Limestone");
-        LanguageRegistry.instance().addStringLocalization("item.placeholderblocks.limestone.name", "en_US", "Limestone");
+        LanguageRegistry.instance().addStringLocalization("tile.limestone.name", "en_US", "Limestone");
+        LanguageRegistry.instance().addStringLocalization("item.limestone.name", "en_US", "Limestone");
     }
 
     @PostInit

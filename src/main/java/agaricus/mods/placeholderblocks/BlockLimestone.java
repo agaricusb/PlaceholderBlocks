@@ -11,27 +11,25 @@ import net.minecraft.world.World;
 
 public class BlockLimestone extends Block {
 
-    private Icon texture = null;
-
-    public BlockLimestone(int id, int index, Material material) {
+    public BlockLimestone(int id, Material material) {
         super(id, material);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        texture = iconRegister.registerIcon("placeholder:limestone");
+        this.blockIcon = iconRegister.registerIcon("placeholderblocks:limestone");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Icon getBlockTexture(IBlockAccess world, int x, int y, int z, int blockSide) {
-        return texture;
+        return this.blockIcon;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        return texture;
+        return this.blockIcon;
     }
 }
