@@ -53,7 +53,7 @@ public class PlaceholderBlocks {
             int id = blockIDs.get(localizedName);
             String unlocalizedName = localizedName.toLowerCase();
 
-            final BlockPlaceholder block = new BlockPlaceholder(id,  Material.rock);
+            final BlockPlaceholder block = new BlockPlaceholder(id)
             block.setUnlocalizedName(unlocalizedName).setHardness(1.5F).setResistance(2.0F);
             GameRegistry.registerBlock(block, unlocalizedName);
             LanguageRegistry.instance().addStringLocalization("tile."+unlocalizedName+".name", "en_US", localizedName);
