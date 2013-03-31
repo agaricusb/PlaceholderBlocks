@@ -117,9 +117,9 @@ public class PlaceholderBlocks {
         // stone
         m.put("3000:0", "placeholderblocks:light_stone,Limestone");
         m.put("3000:1", "placeholderblocks:dark_stone,Granite");
-        // TODO: limestone brick
-        // TODO: granite cobblestone
-        // TODO: granite brick
+        m.put("3000:2", "placeholderblocks:light_stone_lines,Limestone Brick");
+        m.put("3000:1", "placeholderblocks:dark_cobblestone,Granite Cobblestone");
+        m.put("3000:4", "placeholderblocks:dark_stone_lines,Granite Brick");
 
         // ore
         m.put("3001:0", "placeholderblocks:red_ore,Red Jasper Ore");
