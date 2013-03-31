@@ -7,7 +7,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -26,14 +28,22 @@ public class BlockPlaceholder extends Block {
     public BlockPlaceholder(int id) {
         super(id, Material.rock);
 
-        setUnlocalizedName("placeholderblocks");
+        this.setHardness(1.5F);
+        this.setResistance(2.0F);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        textures[0] = iconRegister.registerIcon("placeholderblocks/limestone");
-        textures[1] = iconRegister.registerIcon("placeholderblocks/granite");
+        textures[0] = iconRegister.registerIcon("placeholderblocks:limestone");
+        textures[1] = iconRegister.registerIcon("placeholderblocks:granite");
+    }
+
+    @Override
+    public Icon getBlockTexture(IBlockAccess world, int x, int y, int z, int blockSide) {
+        int blockMeta = Math.min(world.getBlockMetadata(x, y, z), textures.length - 1);
+
+        return textures[blockMeta];
     }
 
     @Override
@@ -55,8 +65,8 @@ public class BlockPlaceholder extends Block {
         return 1;
     }
 
-    /*
     @Override
+    @SuppressWarnings("unchecked")
     public void addCreativeItems(ArrayList itemList) {
         for (final BlockType blockType : BlockType.values()) {
             itemList.add(new ItemStack(this, 1, blockType.ordinal()));
@@ -72,9 +82,10 @@ public class BlockPlaceholder extends Block {
 
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
         for (final BlockType blockType : BlockType.values()) {
             itemList.add(new ItemStack(this, 1, blockType.ordinal()));
         }
-    }*/
+    }
 }

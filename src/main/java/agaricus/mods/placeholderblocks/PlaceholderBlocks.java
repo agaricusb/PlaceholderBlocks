@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.Configuration;
 
@@ -53,8 +54,7 @@ public class PlaceholderBlocks {
             int id = blockIDs.get(localizedName);
             String unlocalizedName = localizedName.toLowerCase();
 
-            final BlockPlaceholder block = new BlockPlaceholder(id);
-            block.setUnlocalizedName(unlocalizedName).setHardness(1.5F).setResistance(2.0F);
+            final Block block = new BlockPlaceholder(id).setUnlocalizedName(unlocalizedName);
             GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, unlocalizedName);
             LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks."+unlocalizedName+".name", "en_US", localizedName);
             LanguageRegistry.instance().addStringLocalization("item.placeholderblocks."+unlocalizedName+".name", "en_US", localizedName);

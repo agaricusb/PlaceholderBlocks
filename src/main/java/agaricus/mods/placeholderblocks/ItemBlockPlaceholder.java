@@ -1,5 +1,6 @@
 package agaricus.mods.placeholderblocks;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,7 @@ public class ItemBlockPlaceholder extends ItemBlock {
         super(id);
         setHasSubtypes(true);
         setMaxDamage(0);
+        setCreativeTab(CreativeTabs.tabBlock);
     }
 
     @Override
@@ -23,7 +25,7 @@ public class ItemBlockPlaceholder extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
-        int i = Math.min(itemStack.getItemDamage(), names.length);
+        int i = Math.min(itemStack.getItemDamage(), names.length - 1);
         return "tile.placeholderblocks." + names[i];
     }
 
