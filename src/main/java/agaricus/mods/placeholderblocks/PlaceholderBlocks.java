@@ -118,7 +118,7 @@ public class PlaceholderBlocks {
         m.put("3000:0", "placeholderblocks:light_stone,Limestone");
         m.put("3000:1", "placeholderblocks:dark_stone,Granite");
         m.put("3000:2", "placeholderblocks:light_stone_lines,Limestone Brick");
-        m.put("3000:1", "placeholderblocks:dark_cobblestone,Granite Cobblestone");
+        m.put("3000:3", "placeholderblocks:dark_cobblestone,Granite Cobblestone");
         m.put("3000:4", "placeholderblocks:dark_stone_lines,Granite Brick");
 
         // ore
