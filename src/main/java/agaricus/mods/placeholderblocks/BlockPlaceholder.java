@@ -16,7 +16,7 @@ import java.util.*;
 
 public class BlockPlaceholder extends Block {
 
-    private Map<Integer, Icon> textures = new HashMap<Integer, Icon>();
+    private Icon[] textures = new Icon[0xf];
     private Map<Integer, String> textureStrings;
 
     public BlockPlaceholder(int id, Map<Integer, String> textureStrings) {
@@ -33,18 +33,18 @@ public class BlockPlaceholder extends Block {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
         for (int i : textureStrings.keySet()) {
-            textures.put(i, iconRegister.registerIcon(textureStrings.get(i)));
+            textures[i & 0xf] = iconRegister.registerIcon(textureStrings.get(i));
         }
     }
 
     @Override
     public Icon getBlockTexture(IBlockAccess world, int x, int y, int z, int blockSide) {
-        return textures.get(world.getBlockMetadata(x, y, z));
+        return textures[world.getBlockMetadata(x, y, z) & 0xf];
     }
 
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        return textures.get(metadata);
+        return textures[metadata & 0xf];
     }
 
     @Override
@@ -60,8 +60,8 @@ public class BlockPlaceholder extends Block {
     @Override
     @SuppressWarnings("unchecked")
     public void addCreativeItems(ArrayList itemList) {
-        for (int i = 0; i < textures.size(); ++i) {
-            if (textures.containsKey(i)) {
+        for (int i = 0; i < 0xf; ++i) {
+            if (textures[i] != null) {
                 itemList.add(new ItemStack(this, 1, i));
             }
         }
@@ -77,8 +77,8 @@ public class BlockPlaceholder extends Block {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        for (int i = 0; i < textures.size(); ++i) {
-            if (textures.containsKey(i)) {
+        for (int i = 0; i < 0xf; ++i) {
+            if (textures[i] != null) {
                 itemList.add(new ItemStack(this, 1, i));
             }
         }
