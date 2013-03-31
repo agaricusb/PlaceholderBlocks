@@ -9,8 +9,6 @@ import java.util.List;
 
 public class ItemBlockPlaceholder extends ItemBlock {
 
-    private String[] names = { "light_stone", "dark_stone", "red_ore", "green_ore", "blue_ore" }; // TODO: DRY
-
     public ItemBlockPlaceholder(int id) {
         super(id);
         setHasSubtypes(true);
@@ -25,15 +23,6 @@ public class ItemBlockPlaceholder extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
-        int i = Math.min(itemStack.getItemDamage(), names.length - 1);
-        return "tile.placeholderblocks." + names[i];
-    }
-
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    @Override
-    public void getSubItems(int itemID, CreativeTabs creativeTabs, List subTypes) {
-        for (int i = 0; i < names.length; ++i) {
-            subTypes.add(new ItemStack(itemID, 1, i));
-        }
+        return "tile.placeholderblocks." + itemStack.itemID + "." + itemStack.getItemDamage();
     }
 }
