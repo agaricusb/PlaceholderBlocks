@@ -16,7 +16,7 @@ import java.util.*;
 
 public class BlockPlaceholder extends Block {
 
-    private Icon[] textures = new Icon[0xf];
+    private Icon[] textures = new Icon[0x10];
     private String[] textureStrings;
 
     public BlockPlaceholder(int id, String[] textureStrings) {

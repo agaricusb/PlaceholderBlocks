@@ -113,14 +113,25 @@ public class PlaceholderBlocks {
         HashMap<String, String> m = new HashMap<String, String>();
 
         // a demonstrative set of defaults
+
+        // stone
         m.put("3000:0", "placeholderblocks:light_stone,Limestone");
         m.put("3000:1", "placeholderblocks:dark_stone,Granite");
         // TODO: limestone brick
         // TODO: granite cobblestone
         // TODO: granite brick
-        m.put("3000:2", "placeholderblocks:red_ore,Red Jasper");
-        m.put("3000:3", "placeholderblocks:green_ore,Green Topaz");
-        m.put("3000:4", "placeholderblocks:blue_ore,Blue Opal");
+
+        // ore
+        m.put("3001:0", "placeholderblocks:red_ore,Red Jasper");
+        m.put("3001:1", "placeholderblocks:green_ore,Green Topaz");
+        m.put("3001:2", "placeholderblocks:blue_ore,Blue Opal");
+        // TODO: cool names
+        m.put("3001:3", "placeholderblocks:gray_ore,Gray Ore");
+        m.put("3001:4", "placeholderblocks:white_ore,White Ore");
+        m.put("3001:5", "placeholderblocks:orange_ore,Orange Ore");
+        m.put("3001:6", "placeholderblocks:black_ore,Black Ore");
+        m.put("3001:14", "rail,Mystery2");
+        m.put("3001:15", "pumpkin_face,Mystery");
 
         for (Map.Entry<String, String> entry : m.entrySet()) {
             String oreName = entry.getKey();
