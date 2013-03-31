@@ -51,15 +51,15 @@ public class PlaceholderBlocks {
 
     @Mod.Init
     public void init(FMLInitializationEvent event) {
-        Map<Integer, String> textureStrings = new HashMap<Integer, String>();
-        textureStrings.put(0, "placeholderblocks:light_stone");
-        textureStrings.put(1, "placeholderblocks:dark_stone");
+        String[] textureStrings = new String[16];
+        textureStrings[0] = "placeholderblocks:light_stone";
+        textureStrings[1] = "placeholderblocks:dark_stone";
         // TODO: limestone brick
         // TODO: granite cobblestone
         // TODO: granite brick
-        textureStrings.put(2, "placeholderblocks:red_ore");
-        textureStrings.put(3, "placeholderblocks:green_ore");
-        textureStrings.put(4, "placeholderblocks:blue_ore");
+        textureStrings[2] = "placeholderblocks:red_ore";
+        textureStrings[3] = "placeholderblocks:green_ore";
+        textureStrings[4] = "placeholderblocks:blue_ore";
 
         final Block block = new BlockPlaceholder(blockID, textureStrings);
         GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock");

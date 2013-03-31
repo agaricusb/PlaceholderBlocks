@@ -17,9 +17,9 @@ import java.util.*;
 public class BlockPlaceholder extends Block {
 
     private Icon[] textures = new Icon[0xf];
-    private Map<Integer, String> textureStrings;
+    private String[] textureStrings;
 
-    public BlockPlaceholder(int id, Map<Integer, String> textureStrings) {
+    public BlockPlaceholder(int id, String[] textureStrings) {
         super(id, Material.rock);
 
         this.setUnlocalizedName("placeholderblock");
@@ -32,8 +32,10 @@ public class BlockPlaceholder extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        for (int i : textureStrings.keySet()) {
-            textures[i & 0xf] = iconRegister.registerIcon(textureStrings.get(i));
+        for (int i = 0; i < textureStrings.length; ++i) {
+            if (textureStrings[i] != null) {
+                textures[i & 0xf] = iconRegister.registerIcon(textureStrings[i]);
+            }
         }
     }
 
