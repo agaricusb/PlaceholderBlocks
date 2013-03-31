@@ -40,6 +40,8 @@ public class PlaceholderBlocks {
             for (int i = 0; i < blockNames.length; ++i) {
                 blockIDs.put(blockNames[i], cfg.getBlock(blockNames[i].toLowerCase(), startID + i).getInt(startID + i));
             }
+
+            // TODO: configurable subtype IDs and textures
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "PlaceholderBlocks had a problem loading it's configuration");
         } finally {
@@ -58,6 +60,8 @@ public class PlaceholderBlocks {
             GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, unlocalizedName);
             LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks."+unlocalizedName+".name", "en_US", localizedName);
             LanguageRegistry.instance().addStringLocalization("item.placeholderblocks."+unlocalizedName+".name", "en_US", localizedName);
+
+            // TODO: limestone, granite, limestone brick, granite cobblestone, granite brick
         }
     }
 
