@@ -12,6 +12,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
 import java.util.HashMap;
@@ -50,17 +51,15 @@ public class PlaceholderBlocks {
     public void init(FMLInitializationEvent event) {
         final Block block = new BlockPlaceholder(blockID);
         GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock");
-
-        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.light_stone.name", "en_US", "Limestone");
-        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.dark_stone.name", "en_US", "Granite");
-        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.red_ore.name", "en_US", "Red Jasper");
-        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.green_ore.name", "en_US", "Green Topaz");
-        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.blue_ore.name", "en_US", "Blue Opal");
     }
 
     @PostInit
     public void postInit(FMLPostInitializationEvent event) {
-        FMLLog.log(Level.FINE, "Loading PlaceholderBlocks...");
+        LanguageRegistry.addName(new ItemStack(blockID, 1, 0), "Limestone");
+        LanguageRegistry.addName(new ItemStack(blockID, 1, 1), "Granite");
+        LanguageRegistry.addName(new ItemStack(blockID, 1, 2), "Red Jasper");
+        LanguageRegistry.addName(new ItemStack(blockID, 1, 3), "Green Topaz");
+        LanguageRegistry.addName(new ItemStack(blockID, 1, 4), "Blue Opal");
     }
 }
 
