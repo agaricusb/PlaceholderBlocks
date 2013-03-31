@@ -137,10 +137,10 @@ public class PlaceholderBlocks {
         m.put("216:2", "placeholderblocks:blue_solid,Blue Opal Block");
 
         // organics
-        m.put("210:0", "crops_7,Generic Crops");
-        m.put("211:0", "leaves,Generic Leaves");
-        m.put("212:0", "wood,Generic Wood");
-        m.put("214:0", "flower,Generic Plant");
+        m.put("210:0", "melon_top,Generic Crops");
+        m.put("211:0", "leaves_opaque,Generic Leaves");
+        m.put("212:0", "tree_top,Generic Wood");
+        m.put("214:0", "pumpkin_face,Generic Plant");
 
         for (Map.Entry<String, String> entry : m.entrySet()) {
             String oreName = entry.getKey();
