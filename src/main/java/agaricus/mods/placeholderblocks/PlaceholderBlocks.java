@@ -13,7 +13,9 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ConfigCategory;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.Property;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +30,7 @@ public class PlaceholderBlocks {
     private boolean verbose = true;
 
     private int blockID = 0;
+    private List<AbstractBlock> abstractBlocks = new ArrayList<AbstractBlock>();
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
@@ -39,9 +42,24 @@ public class PlaceholderBlocks {
         try {
             cfg.load();
 
-            blockID = cfg.getBlock("blockID", startID).getInt(startID);
+            if (cfg.getCategoryNames().size() == 0) {
+                loadDefaults(cfg);
+            }
 
-            // TODO: configurable subtype IDs and textures
+            ConfigCategory category = cfg.getCategory("Blocks");
+
+            for (Map.Entry<String, Property> entry : category.entrySet()) {
+                String key = entry.getKey();
+                Property property = entry.getValue();
+
+                if (property.getString().length() == 0) {
+                    // not set
+                    continue;
+                }
+
+                abstractBlocks.add(new AbstractBlock(key, property.getString()));
+            }
+            blockID = cfg.getBlock("blockID", startID).getInt(startID); // TODO: remove
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "PlaceholderBlocks had a problem loading it's configuration");
         } finally {
@@ -52,28 +70,48 @@ public class PlaceholderBlocks {
     @Mod.Init
     public void init(FMLInitializationEvent event) {
         String[] textureStrings = new String[16];
-        textureStrings[0] = "placeholderblocks:light_stone";
-        textureStrings[1] = "placeholderblocks:dark_stone";
-        // TODO: limestone brick
-        // TODO: granite cobblestone
-        // TODO: granite brick
-        textureStrings[2] = "placeholderblocks:red_ore";
-        textureStrings[3] = "placeholderblocks:green_ore";
-        textureStrings[4] = "placeholderblocks:blue_ore";
 
+        for (AbstractBlock abstractBlock : abstractBlocks) {
+            textureStrings[abstractBlock.metadata] = abstractBlock.texture;
+        }
+
+        // TODO: support multiple block IDs
         final Block block = new BlockPlaceholder(blockID, textureStrings);
         GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock");
 
-        LanguageRegistry.addName(new ItemStack(blockID, 1, 0), "Limestone");
-        LanguageRegistry.addName(new ItemStack(blockID, 1, 1), "Granite");
-        LanguageRegistry.addName(new ItemStack(blockID, 1, 2), "Red Jasper");
-        LanguageRegistry.addName(new ItemStack(blockID, 1, 3), "Green Topaz");
-        LanguageRegistry.addName(new ItemStack(blockID, 1, 4), "Blue Opal");
+        for (AbstractBlock abstractBlock : abstractBlocks) {
+            LanguageRegistry.addName(new ItemStack(blockID, 1, abstractBlock.metadata), abstractBlock.name);
+        }
     }
 
     @PostInit
     public void postInit(FMLPostInitializationEvent event) {
 
+    }
+
+    public void loadDefaults(Configuration cfg) {
+        ConfigCategory category = cfg.getCategory("Blocks");
+
+        FMLLog.log(Level.FINE, "PlaceholderBlocks initializing defaults");
+
+        HashMap<String, String> m = new HashMap<String, String>();
+
+        // a demonstrative set of defaults
+        m.put("3000:0", "placeholderblocks:light_stone,Limestone");
+        m.put("3000:1", "placeholderblocks:dark_stone,Granite");
+        // TODO: limestone brick
+        // TODO: granite cobblestone
+        // TODO: granite brick
+        m.put("3000:2", "placeholderblocks:red_ore,Red Jasper");
+        m.put("3000:3", "placeholderblocks:green_ore,Green Topaz");
+        m.put("3000:4", "placeholderblocks:blue_ore,Blue Opal");
+
+        for (Map.Entry<String, String> entry : m.entrySet()) {
+            String oreName = entry.getKey();
+            String modID = entry.getValue();
+
+            category.put(oreName, new Property(oreName, modID, Property.Type.STRING));
+        }
     }
 }
 
