@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ItemBlockPlaceholder extends ItemBlock {
 
-    private String[] names = { "limestone", "granite" };
+    private String[] names = { "light_stone", "dark_stone", "red_ore", "green_ore", "blue_ore" }; // TODO: DRY
 
     public ItemBlockPlaceholder(int id) {
         super(id);

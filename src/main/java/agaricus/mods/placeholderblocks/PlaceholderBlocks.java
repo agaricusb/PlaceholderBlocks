@@ -51,10 +51,11 @@ public class PlaceholderBlocks {
         final Block block = new BlockPlaceholder(blockID);
         GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock");
 
-        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.limestone.name", "en_US", "Limestone");
-        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.granite.name", "en_US", "Granite");
-
-        // TODO: limestone, granite, limestone brick, granite cobblestone, granite brick
+        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.light_stone.name", "en_US", "Limestone");
+        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.dark_stone.name", "en_US", "Granite");
+        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.red_ore.name", "en_US", "Red Jasper");
+        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.green_ore.name", "en_US", "Green Topaz");
+        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.blue_ore.name", "en_US", "Blue Opal");
     }
 
     @PostInit

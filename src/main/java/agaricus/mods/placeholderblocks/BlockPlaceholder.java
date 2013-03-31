@@ -19,11 +19,18 @@ import java.util.Random;
 public class BlockPlaceholder extends Block {
 
     public enum BlockType {
-        LIMESTONE,
-        GRANITE,
+        LIGHT_STONE,
+        DARK_STONE,
+        // TODO: limestone brick
+        // TODO: granite cobblestone
+        // TODO: granite brick
+
+        RED_ORE,
+        GREEN_ORE,
+        BLUE_ORE,
     };
 
-    private Icon[] textures = new Icon[2];
+    private Icon[] textures = new Icon[5];
 
     public BlockPlaceholder(int id) {
         super(id, Material.rock);
@@ -36,8 +43,11 @@ public class BlockPlaceholder extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        textures[0] = iconRegister.registerIcon("placeholderblocks:limestone");
-        textures[1] = iconRegister.registerIcon("placeholderblocks:granite");
+        textures[0] = iconRegister.registerIcon("placeholderblocks:light_stone");
+        textures[1] = iconRegister.registerIcon("placeholderblocks:dark_stone");
+        textures[2] = iconRegister.registerIcon("placeholderblocks:red_ore");
+        textures[3] = iconRegister.registerIcon("placeholderblocks:green_ore");
+        textures[4] = iconRegister.registerIcon("placeholderblocks:blue_ore");
     }
 
     @Override
@@ -49,9 +59,7 @@ public class BlockPlaceholder extends Block {
 
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        if (metadata > 1) {
-            metadata = 1;
-        }
+        metadata = Math.min(metadata, textures.length - 1);
 
         return textures[metadata];
     }
