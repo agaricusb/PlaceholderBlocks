@@ -133,6 +133,11 @@ public class PlaceholderBlocks {
         m.put("3001:14", "rail,Mystery2");
         m.put("3001:15", "pumpkin_face,Mystery");
 
+        // storage
+        m.put("3002:0", "placeholderblocks:red_solid,Red Jasper Block");
+        m.put("3002:1", "placeholderblocks:green_solid,Green Topaz block");
+        m.put("3002:2", "placeholderblocks:blue_solid,Blue Opal Block");
+
         for (Map.Entry<String, String> entry : m.entrySet()) {
             String oreName = entry.getKey();
             String modID = entry.getValue();
