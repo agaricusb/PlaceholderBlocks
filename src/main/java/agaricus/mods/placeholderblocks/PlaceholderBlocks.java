@@ -122,20 +122,20 @@ public class PlaceholderBlocks {
         // TODO: granite brick
 
         // ore
-        m.put("3001:0", "placeholderblocks:red_ore,Red Jasper");
-        m.put("3001:1", "placeholderblocks:green_ore,Green Topaz");
-        m.put("3001:2", "placeholderblocks:blue_ore,Blue Opal");
-        // TODO: cool names
-        m.put("3001:3", "placeholderblocks:gray_ore,Gray Ore");
-        m.put("3001:4", "placeholderblocks:white_ore,White Ore");
-        m.put("3001:5", "placeholderblocks:orange_ore,Orange Ore");
-        m.put("3001:6", "placeholderblocks:black_ore,Black Ore");
+        m.put("3001:0", "placeholderblocks:red_ore,Red Jasper Ore");
+        m.put("3001:1", "placeholderblocks:green_ore,Green Topaz Ore");
+        m.put("3001:2", "placeholderblocks:blue_ore,Blue Opal Ore");
+        m.put("3001:3", "placeholderblocks:gray_ore,Gray Mystic Topaz Ore");
+        m.put("3001:4", "placeholderblocks:white_ore,White Jade Ore");
+        m.put("3001:5", "placeholderblocks:orange_ore,Orange Fire Opal Ore");
+        m.put("3001:6", "placeholderblocks:black_ore,Black Agate Ore");
+        m.put("3001:6", "placeholderblocks:cyan_ore,Aquamarine Zircon Ore");
         m.put("3001:14", "rail,Mystery2");
         m.put("3001:15", "pumpkin_face,Mystery");
 
         // storage
         m.put("3002:0", "placeholderblocks:red_solid,Red Jasper Block");
-        m.put("3002:1", "placeholderblocks:green_solid,Green Topaz block");
+        m.put("3002:1", "placeholderblocks:green_solid,Green Topaz Block");
         m.put("3002:2", "placeholderblocks:blue_solid,Blue Opal Block");
 
         for (Map.Entry<String, String> entry : m.entrySet()) {
