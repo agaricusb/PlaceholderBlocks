@@ -30,7 +30,7 @@ public class PlaceholderBlocks {
     private boolean verbose = true;
 
     private int blockID = 0;
-    private List<AbstractBlock> abstractBlocks = new ArrayList<AbstractBlock>();
+    private Map<Integer, List<AbstractBlock>> abstractBlocks = new HashMap<Integer, List<AbstractBlock>>();
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
@@ -38,7 +38,6 @@ public class PlaceholderBlocks {
 
         FMLLog.log(Level.FINE, "PlaceholderBlocks loading config");
 
-        int startID = 3000;
         try {
             cfg.load();
 
@@ -57,9 +56,20 @@ public class PlaceholderBlocks {
                     continue;
                 }
 
-                abstractBlocks.add(new AbstractBlock(key, property.getString()));
+                // parse configuration entry
+                AbstractBlock abstractBlock = new AbstractBlock(key, property.getString());
+
+                // add to list keyed by block ID
+                List<AbstractBlock> list;
+                if (abstractBlocks.containsKey(abstractBlock.id)) {
+                    list = abstractBlocks.get(abstractBlock.id);
+                } else {
+                    list = new ArrayList<AbstractBlock>();
+                }
+                list.add(abstractBlock);
+
+                abstractBlocks.put(abstractBlock.id, list);
             }
-            blockID = cfg.getBlock("blockID", startID).getInt(startID); // TODO: remove
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "PlaceholderBlocks had a problem loading it's configuration");
         } finally {
@@ -69,18 +79,24 @@ public class PlaceholderBlocks {
 
     @Mod.Init
     public void init(FMLInitializationEvent event) {
-        String[] textureStrings = new String[16];
+        // register each block
+        for (int blockID : abstractBlocks.keySet()) {
+            System.out.println("Registering block ID "+blockID);
+            // subtype textures
+            String[] textureStrings = new String[16];
+            for (AbstractBlock abstractBlock : abstractBlocks.get(blockID)) {
+                textureStrings[abstractBlock.metadata] = abstractBlock.texture;
+                System.out.println("- "+abstractBlock.metadata+" = texture "+abstractBlock.texture);
+            }
 
-        for (AbstractBlock abstractBlock : abstractBlocks) {
-            textureStrings[abstractBlock.metadata] = abstractBlock.texture;
-        }
+            final Block block = new BlockPlaceholder(blockID, textureStrings).setUnlocalizedName("placeholderblock." + blockID);
+            GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock." + blockID);
 
-        // TODO: support multiple block IDs
-        final Block block = new BlockPlaceholder(blockID, textureStrings);
-        GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock");
-
-        for (AbstractBlock abstractBlock : abstractBlocks) {
-            LanguageRegistry.addName(new ItemStack(blockID, 1, abstractBlock.metadata), abstractBlock.name);
+            // subtype names
+            for (AbstractBlock abstractBlock : abstractBlocks.get(blockID)) {
+                LanguageRegistry.addName(new ItemStack(blockID, 1, abstractBlock.metadata), abstractBlock.name);
+                System.out.println("- "+abstractBlock.metadata+" = name "+abstractBlock.name);
+            }
         }
     }
 

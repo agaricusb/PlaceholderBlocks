@@ -22,7 +22,6 @@ public class BlockPlaceholder extends Block {
     public BlockPlaceholder(int id, String[] textureStrings) {
         super(id, Material.rock);
 
-        this.setUnlocalizedName("placeholderblock");
         this.setHardness(1.5F);
         this.setResistance(2.0F);
 
