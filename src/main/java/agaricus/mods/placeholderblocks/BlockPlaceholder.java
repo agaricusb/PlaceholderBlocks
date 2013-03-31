@@ -18,18 +18,6 @@ import java.util.Random;
 
 public class BlockPlaceholder extends Block {
 
-    public enum BlockType {
-        LIGHT_STONE,
-        DARK_STONE,
-        // TODO: limestone brick
-        // TODO: granite cobblestone
-        // TODO: granite brick
-
-        RED_ORE,
-        GREEN_ORE,
-        BLUE_ORE,
-    };
-
     private Icon[] textures = new Icon[5];
 
     public BlockPlaceholder(int id) {
@@ -45,6 +33,9 @@ public class BlockPlaceholder extends Block {
     public void registerIcons(IconRegister iconRegister) {
         textures[0] = iconRegister.registerIcon("placeholderblocks:light_stone");
         textures[1] = iconRegister.registerIcon("placeholderblocks:dark_stone");
+        // TODO: limestone brick
+        // TODO: granite cobblestone
+        // TODO: granite brick
         textures[2] = iconRegister.registerIcon("placeholderblocks:red_ore");
         textures[3] = iconRegister.registerIcon("placeholderblocks:green_ore");
         textures[4] = iconRegister.registerIcon("placeholderblocks:blue_ore");
@@ -77,8 +68,8 @@ public class BlockPlaceholder extends Block {
     @Override
     @SuppressWarnings("unchecked")
     public void addCreativeItems(ArrayList itemList) {
-        for (final BlockType blockType : BlockType.values()) {
-            itemList.add(new ItemStack(this, 1, blockType.ordinal()));
+        for (int i = 0; i < textures.length; ++i) {
+            itemList.add(new ItemStack(this, 1, i));
         }
     }
 
@@ -93,8 +84,8 @@ public class BlockPlaceholder extends Block {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        for (final BlockType blockType : BlockType.values()) {
-            itemList.add(new ItemStack(this, 1, blockType.ordinal()));
+        for (int i = 0; i < textures.length; ++i) {
+            itemList.add(new ItemStack(this, 1, i));
         }
     }
 }
