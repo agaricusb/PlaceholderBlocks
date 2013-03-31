@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BlockPlaceholder extends Block {
 
@@ -20,24 +21,19 @@ public class BlockPlaceholder extends Block {
         GRANITE,
     };
 
-    private Icon[] textures = {null, null};
+    private Icon[] textures = new Icon[2];
 
     public BlockPlaceholder(int id) {
         super(id, Material.rock);
+
+        setUnlocalizedName("placeholderblocks");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        textures[0] = iconRegister.registerIcon("placeholderblocks:limestone");
-        textures[1] = iconRegister.registerIcon("placeholderblocks:granite");
-    }
-
-    @Override
-    public void addCreativeItems(ArrayList itemList) {
-        for (final BlockType blockType : BlockType.values()) {
-            itemList.add(new ItemStack(this, 1, blockType.ordinal()));
-        }
+        textures[0] = iconRegister.registerIcon("placeholderblocks/limestone");
+        textures[1] = iconRegister.registerIcon("placeholderblocks/granite");
     }
 
     @Override
@@ -48,6 +44,25 @@ public class BlockPlaceholder extends Block {
 
         return textures[metadata];
     }
+
+    @Override
+    public int damageDropped(int meta) {
+        return meta;
+    }
+
+    @Override
+    public int quantityDropped(Random random) {
+        return 1;
+    }
+
+    /*
+    @Override
+    public void addCreativeItems(ArrayList itemList) {
+        for (final BlockType blockType : BlockType.values()) {
+            itemList.add(new ItemStack(this, 1, blockType.ordinal()));
+        }
+    }
+
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -61,5 +76,5 @@ public class BlockPlaceholder extends Block {
         for (final BlockType blockType : BlockType.values()) {
             itemList.add(new ItemStack(this, 1, blockType.ordinal()));
         }
-    }
+    }*/
 }

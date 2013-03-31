@@ -53,11 +53,11 @@ public class PlaceholderBlocks {
             int id = blockIDs.get(localizedName);
             String unlocalizedName = localizedName.toLowerCase();
 
-            final BlockPlaceholder block = new BlockPlaceholder(id)
+            final BlockPlaceholder block = new BlockPlaceholder(id);
             block.setUnlocalizedName(unlocalizedName).setHardness(1.5F).setResistance(2.0F);
-            GameRegistry.registerBlock(block, unlocalizedName);
-            LanguageRegistry.instance().addStringLocalization("tile."+unlocalizedName+".name", "en_US", localizedName);
-            LanguageRegistry.instance().addStringLocalization("item."+unlocalizedName+".name", "en_US", localizedName);
+            GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, unlocalizedName);
+            LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks."+unlocalizedName+".name", "en_US", localizedName);
+            LanguageRegistry.instance().addStringLocalization("item.placeholderblocks."+unlocalizedName+".name", "en_US", localizedName);
         }
     }
 
