@@ -12,47 +12,39 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class BlockPlaceholder extends Block {
 
-    private Icon[] textures = new Icon[5];
+    private Map<Integer, Icon> textures = new HashMap<Integer, Icon>();
+    private Map<Integer, String> textureStrings;
 
-    public BlockPlaceholder(int id) {
+    public BlockPlaceholder(int id, Map<Integer, String> textureStrings) {
         super(id, Material.rock);
 
         this.setUnlocalizedName("placeholderblock");
         this.setHardness(1.5F);
         this.setResistance(2.0F);
+
+        this.textureStrings = textureStrings;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        textures[0] = iconRegister.registerIcon("placeholderblocks:light_stone");
-        textures[1] = iconRegister.registerIcon("placeholderblocks:dark_stone");
-        // TODO: limestone brick
-        // TODO: granite cobblestone
-        // TODO: granite brick
-        textures[2] = iconRegister.registerIcon("placeholderblocks:red_ore");
-        textures[3] = iconRegister.registerIcon("placeholderblocks:green_ore");
-        textures[4] = iconRegister.registerIcon("placeholderblocks:blue_ore");
+        for (int i : textureStrings.keySet()) {
+            textures.put(i, iconRegister.registerIcon(textureStrings.get(i)));
+        }
     }
 
     @Override
     public Icon getBlockTexture(IBlockAccess world, int x, int y, int z, int blockSide) {
-        int blockMeta = Math.min(world.getBlockMetadata(x, y, z), textures.length - 1);
-
-        return textures[blockMeta];
+        return textures.get(world.getBlockMetadata(x, y, z));
     }
 
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        metadata = Math.min(metadata, textures.length - 1);
-
-        return textures[metadata];
+        return textures.get(metadata);
     }
 
     @Override
@@ -68,11 +60,12 @@ public class BlockPlaceholder extends Block {
     @Override
     @SuppressWarnings("unchecked")
     public void addCreativeItems(ArrayList itemList) {
-        for (int i = 0; i < textures.length; ++i) {
-            itemList.add(new ItemStack(this, 1, i));
+        for (int i = 0; i < textures.size(); ++i) {
+            if (textures.containsKey(i)) {
+                itemList.add(new ItemStack(this, 1, i));
+            }
         }
     }
-
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -84,8 +77,10 @@ public class BlockPlaceholder extends Block {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        for (int i = 0; i < textures.length; ++i) {
-            itemList.add(new ItemStack(this, 1, i));
+        for (int i = 0; i < textures.size(); ++i) {
+            if (textures.containsKey(i)) {
+                itemList.add(new ItemStack(this, 1, i));
+            }
         }
     }
 }

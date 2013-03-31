@@ -15,7 +15,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -49,17 +51,29 @@ public class PlaceholderBlocks {
 
     @Mod.Init
     public void init(FMLInitializationEvent event) {
-        final Block block = new BlockPlaceholder(blockID);
-        GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock");
-    }
+        Map<Integer, String> textureStrings = new HashMap<Integer, String>();
+        textureStrings.put(0, "placeholderblocks:light_stone");
+        textureStrings.put(1, "placeholderblocks:dark_stone");
+        // TODO: limestone brick
+        // TODO: granite cobblestone
+        // TODO: granite brick
+        textureStrings.put(2, "placeholderblocks:red_ore");
+        textureStrings.put(3, "placeholderblocks:green_ore");
+        textureStrings.put(4, "placeholderblocks:blue_ore");
 
-    @PostInit
-    public void postInit(FMLPostInitializationEvent event) {
+        final Block block = new BlockPlaceholder(blockID, textureStrings);
+        GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock");
+
         LanguageRegistry.addName(new ItemStack(blockID, 1, 0), "Limestone");
         LanguageRegistry.addName(new ItemStack(blockID, 1, 1), "Granite");
         LanguageRegistry.addName(new ItemStack(blockID, 1, 2), "Red Jasper");
         LanguageRegistry.addName(new ItemStack(blockID, 1, 3), "Green Topaz");
         LanguageRegistry.addName(new ItemStack(blockID, 1, 4), "Blue Opal");
+    }
+
+    @PostInit
+    public void postInit(FMLPostInitializationEvent event) {
+
     }
 }
 
