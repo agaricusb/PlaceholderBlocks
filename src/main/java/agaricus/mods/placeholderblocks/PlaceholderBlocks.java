@@ -24,8 +24,7 @@ public class PlaceholderBlocks {
 
     private boolean verbose = true;
 
-    private String blockNames[] = { "Limestone", "Granite" };
-    private Map<String, Integer> blockIDs = new HashMap<String, Integer>();
+    private int blockID = 0;
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
@@ -37,9 +36,7 @@ public class PlaceholderBlocks {
         try {
             cfg.load();
 
-            for (int i = 0; i < blockNames.length; ++i) {
-                blockIDs.put(blockNames[i], cfg.getBlock(blockNames[i].toLowerCase(), startID + i).getInt(startID + i));
-            }
+            blockID = cfg.getBlock("blockID", startID).getInt(startID);
 
             // TODO: configurable subtype IDs and textures
         } catch (Exception e) {
@@ -51,18 +48,13 @@ public class PlaceholderBlocks {
 
     @Mod.Init
     public void init(FMLInitializationEvent event) {
-        for (int i = 0; i < blockNames.length; ++i) {
-            String localizedName = blockNames[i];
-            int id = blockIDs.get(localizedName);
-            String unlocalizedName = localizedName.toLowerCase();
+        final Block block = new BlockPlaceholder(blockID);
+        GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, "placeholderblock");
 
-            final Block block = new BlockPlaceholder(id).setUnlocalizedName(unlocalizedName);
-            GameRegistry.registerBlock(block, ItemBlockPlaceholder.class, unlocalizedName);
-            LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks."+unlocalizedName+".name", "en_US", localizedName);
-            LanguageRegistry.instance().addStringLocalization("item.placeholderblocks."+unlocalizedName+".name", "en_US", localizedName);
+        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.limestone.name", "en_US", "Limestone");
+        LanguageRegistry.instance().addStringLocalization("tile.placeholderblocks.granite.name", "en_US", "Granite");
 
-            // TODO: limestone, granite, limestone brick, granite cobblestone, granite brick
-        }
+        // TODO: limestone, granite, limestone brick, granite cobblestone, granite brick
     }
 
     @PostInit

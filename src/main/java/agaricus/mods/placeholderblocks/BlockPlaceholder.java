@@ -28,6 +28,7 @@ public class BlockPlaceholder extends Block {
     public BlockPlaceholder(int id) {
         super(id, Material.rock);
 
+        this.setUnlocalizedName("placeholderblock");
         this.setHardness(1.5F);
         this.setResistance(2.0F);
     }
