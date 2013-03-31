@@ -115,28 +115,32 @@ public class PlaceholderBlocks {
         // a demonstrative set of defaults
 
         // stone
-        m.put("3000:0", "placeholderblocks:light_stone,Limestone");
-        m.put("3000:1", "placeholderblocks:dark_stone,Granite");
-        m.put("3000:2", "placeholderblocks:light_stone_lines,Limestone Brick");
-        m.put("3000:3", "placeholderblocks:dark_cobblestone,Granite Cobblestone");
-        m.put("3000:4", "placeholderblocks:dark_stone_lines,Granite Brick");
+        m.put("215:0", "placeholderblocks:light_stone,Limestone");
+        m.put("215:1", "placeholderblocks:dark_stone,Granite");
+        m.put("215:2", "placeholderblocks:light_stone_lines,Limestone Brick");
+        m.put("215:3", "placeholderblocks:dark_cobblestone,Granite Cobblestone");
+        m.put("215:4", "placeholderblocks:dark_stone_lines,Granite Brick");
 
         // ore
-        m.put("3001:0", "placeholderblocks:red_ore,Red Jasper Ore");
-        m.put("3001:1", "placeholderblocks:green_ore,Green Topaz Ore");
-        m.put("3001:2", "placeholderblocks:blue_ore,Blue Opal Ore");
-        m.put("3001:3", "placeholderblocks:gray_ore,Gray Mystic Topaz Ore");
-        m.put("3001:4", "placeholderblocks:white_ore,White Jade Ore");
-        m.put("3001:5", "placeholderblocks:orange_ore,Orange Fire Opal Ore");
-        m.put("3001:6", "placeholderblocks:black_ore,Black Agate Ore");
-        m.put("3001:6", "placeholderblocks:cyan_ore,Aquamarine Zircon Ore");
-        m.put("3001:14", "rail,Mystery2");
-        m.put("3001:15", "pumpkin_face,Mystery");
+        m.put("213:0", "placeholderblocks:red_ore,Red Jasper Ore");
+        m.put("213:1", "placeholderblocks:green_ore,Green Topaz Ore");
+        m.put("213:2", "placeholderblocks:blue_ore,Blue Opal Ore");
+        m.put("213:3", "placeholderblocks:gray_ore,Gray Mystic Topaz Ore");
+        m.put("213:4", "placeholderblocks:white_ore,White Jade Ore");
+        m.put("213:5", "placeholderblocks:orange_ore,Orange Fire Opal Ore");
+        m.put("213:6", "placeholderblocks:black_ore,Black Agate Ore");
+        m.put("213:6", "placeholderblocks:cyan_ore,Aquamarine Zircon Ore");
 
         // storage
-        m.put("3002:0", "placeholderblocks:red_solid,Red Jasper Block");
-        m.put("3002:1", "placeholderblocks:green_solid,Green Topaz Block");
-        m.put("3002:2", "placeholderblocks:blue_solid,Blue Opal Block");
+        m.put("216:0", "placeholderblocks:red_solid,Red Jasper Block");
+        m.put("216:1", "placeholderblocks:green_solid,Green Topaz Block");
+        m.put("216:2", "placeholderblocks:blue_solid,Blue Opal Block");
+
+        // organics
+        m.put("210:0", "crops_7,Generic Crops");
+        m.put("211:0", "leaves,Generic Leaves");
+        m.put("212:0", "wood,Generic Wood");
+        m.put("214:0", "flower,Generic Plant");
 
         for (Map.Entry<String, String> entry : m.entrySet()) {
             String oreName = entry.getKey();
