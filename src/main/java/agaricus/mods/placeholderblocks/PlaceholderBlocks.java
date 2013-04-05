@@ -41,10 +41,6 @@ public class PlaceholderBlocks {
         try {
             cfg.load();
 
-            if (cfg.getCategoryNames().size() == 0) {
-                loadDefaults(cfg);
-            }
-
             ConfigCategory category = cfg.getCategory("Blocks");
 
             for (Map.Entry<String, Property> entry : category.entrySet()) {
@@ -103,51 +99,6 @@ public class PlaceholderBlocks {
     @PostInit
     public void postInit(FMLPostInitializationEvent event) {
 
-    }
-
-    public void loadDefaults(Configuration cfg) {
-        ConfigCategory category = cfg.getCategory("Blocks");
-
-        FMLLog.log(Level.FINE, "PlaceholderBlocks initializing defaults");
-
-        HashMap<String, String> m = new HashMap<String, String>();
-
-        // a demonstrative set of defaults
-
-        // stone
-        m.put("215:0", "placeholderblocks:light_stone,Limestone");
-        m.put("215:1", "placeholderblocks:dark_stone,Granite");
-        m.put("215:2", "placeholderblocks:light_stone_lines,Limestone Brick");
-        m.put("215:3", "placeholderblocks:dark_cobblestone,Granite Cobblestone");
-        m.put("215:4", "placeholderblocks:dark_stone_lines,Granite Brick");
-
-        // ore
-        m.put("213:0", "placeholderblocks:red_ore,Red Jasper Ore");
-        m.put("213:1", "placeholderblocks:green_ore,Green Topaz Ore");
-        m.put("213:2", "placeholderblocks:blue_ore,Blue Opal Ore");
-        m.put("213:3", "placeholderblocks:gray_ore,Gray Mystic Topaz Ore");
-        m.put("213:4", "placeholderblocks:white_ore,White Jade Ore");
-        m.put("213:5", "placeholderblocks:orange_ore,Orange Fire Opal Ore");
-        m.put("213:6", "placeholderblocks:black_ore,Black Agate Ore");
-        m.put("213:6", "placeholderblocks:cyan_ore,Aquamarine Zircon Ore");
-
-        // storage
-        m.put("216:0", "placeholderblocks:red_solid,Red Jasper Block");
-        m.put("216:1", "placeholderblocks:green_solid,Green Topaz Block");
-        m.put("216:2", "placeholderblocks:blue_solid,Blue Opal Block");
-
-        // organics
-        m.put("210:0", "melon_top,Generic Crops");
-        m.put("211:0", "leaves_opaque,Generic Leaves");
-        m.put("212:0", "tree_top,Generic Wood");
-        m.put("214:0", "pumpkin_face,Generic Plant");
-
-        for (Map.Entry<String, String> entry : m.entrySet()) {
-            String oreName = entry.getKey();
-            String modID = entry.getValue();
-
-            category.put(oreName, new Property(oreName, modID, Property.Type.STRING));
-        }
     }
 }
 

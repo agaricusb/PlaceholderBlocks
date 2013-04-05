@@ -1,0 +1,40 @@
+# PlaceholderBlocks Example 1 - placeholders for RedPower2 world gen blocks matching FTB Ultimate block IDs
+
+# Configuration file
+
+####################
+# Blocks
+####################
+
+Blocks {
+    # organics
+    S:"210:0"=melon_top,Generic Crops
+    S:"211:0"=leaves_opaque,Generic Leaves
+    S:"212:0"=tree_top,Generic Wood
+
+    # ore
+    S:"213:0"=placeholderblocks:red_ore,Red Jasper Ore
+    S:"213:1"=placeholderblocks:green_ore,Green Topaz Ore
+    S:"213:2"=placeholderblocks:blue_ore,Blue Opal Ore
+    S:"213:3"=placeholderblocks:gray_ore,Gray Mystic Topaz Ore
+    S:"213:4"=placeholderblocks:white_ore,White Jade Ore
+    S:"213:5"=placeholderblocks:orange_ore,Orange Fire Opal Ore
+    S:"213:6"=placeholderblocks:cyan_ore,Aquamarine Zircon Ore
+
+    # more organics
+    S:"214:0"=pumpkin_face,Generic Plant
+
+    # stone
+    S:"215:0"=placeholderblocks:light_stone,Limestone
+    S:"215:1"=placeholderblocks:dark_stone,Granite
+    S:"215:2"=placeholderblocks:light_stone_lines,Limestone Brick
+    S:"215:3"=placeholderblocks:dark_cobblestone,Granite Cobblestone
+    S:"215:4"=placeholderblocks:dark_stone_lines,Granite Brick
+
+    # storage
+    S:"216:0"=placeholderblocks:red_solid,Red Jasper Block
+    S:"216:1"=placeholderblocks:green_solid,Green Topaz Block
+    S:"216:2"=placeholderblocks:blue_solid,Blue Opal Block
+}
+
+
