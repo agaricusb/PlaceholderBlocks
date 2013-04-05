@@ -1,4 +1,5 @@
 # PlaceholderBlocks Example 1 - placeholders for RedPower2 world gen blocks matching FTB Ultimate block IDs
+# Copy the contents of this file to config/PlaceholderBlocks.cfg
 
 # Configuration file
 
